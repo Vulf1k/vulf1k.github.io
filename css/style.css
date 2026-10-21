@@ -194,6 +194,11 @@ img {
     transition: background 0.2s;
 }
 
+.themes button:active {
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: scale(0.95);
+}
+
 .menu-btn:hover {
     background-color: rgba(163, 230, 53, 0.1);
 }
@@ -327,11 +332,6 @@ footer {
 
     .right-btn svg {
         filter: drop-shadow(-0.4vh 0 0 #000000);
-    }
-
-    .themes button:active {
-        background-color: rgba(0, 0, 0, 0.4);
-        transform: scale(0.95);
     }
 
     .themes button {
