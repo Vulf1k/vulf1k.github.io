@@ -90,6 +90,7 @@
                 </div>
             </nav>
         </aside>
+        <div class="sidebar-overlay"></div>
         <main class="main-content">
             <header>
                 <h1 class="main-title">Vulf1k</h1>
@@ -175,12 +176,16 @@
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
 
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
             sidebar.classList.toggle('open');
         });
 
-
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
 
         const container = document.querySelector('.particles-container');
         const particleCount = 30;
