@@ -8,8 +8,13 @@
 /*https://www.artstation.com/artwork/684W5w*/
 .main-title {
     text-align: center;
-    font-size: 100px;
+    font-size: 7vw;
     text-shadow: 10px 10px 0 #000000;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
 }
 
 header {
@@ -37,25 +42,46 @@ header {
 }
 
 .left-logo {
-    margin-right: -30px;
+    margin-right: -3vw;
+    width: 7vw;
+    opacity: 0.6;
 }
 
 .center-logo {
-    width: 150px !important;
+    width: 10vw;
     z-index: 100;
+    box-shadow: 
+        20px 0 10px -10px rgba(0, 0, 0, 1), 
+        -20px 0 10px -10px rgba(0, 0, 0, 1);
 }
 
 .right-logo {
-    margin-left: -30px;
+    opacity: 0.6;
+    width: 7vw;
+    margin-left: -3vw;
+}
+
+.left-btn svg {
+    color: #121c16;
+    filter: drop-shadow(0.4vw 0 0 #000000);
+}
+
+.right-btn svg {
+    color: #121c16;
+    filter: drop-shadow(-0.4vw 0 0 #000000);
+}
+
+.themes button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10%;
 }
 
 .themes button {
-    height: 100px;
-    margin: 10px;
-}
-
-.logo-container img {
-    width: 100px;
+    width: 7vw;
+    height: 7vw;
+    margin: 2vw;
+    background: none;
+    border: none;
 }
 
 .particles-container {
@@ -67,6 +93,7 @@ header {
   pointer-events: none; 
   overflow: hidden;
   z-index: 1;
+  background-image: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 .particle {
@@ -113,7 +140,7 @@ header {
     line-height: 1.6;
     color: #EDF5E8;
     background-color: #243D2D;
-    background-image: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+    
     /*background-image: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.1) 1px, rgba(0, 0, 0, 0.1) 2px);*/
     background-attachment: fixed;
     background-size: cover;
@@ -232,7 +259,6 @@ img {
 .main-content {
     position: relative;
     margin-left: 60px;
-    padding: 0 40px;
     flex-grow: 1;
     transition: margin-left 0.3s ease;
     display: flex;
@@ -242,18 +268,71 @@ img {
     z-index: 50;
 }
 
+.facts {
+    padding: 0 40px;
+}
+
+footer {
+    padding: 0 20px;
+    text-align: center;
+}
 
 @media (min-width: 769px) {
     .sidebar.open~.main-content {
         margin-left: 240px;
     }
+    .particles-container {
+        margin-left: 60px;
+    }
 }
 
 
 @media (max-width: 768px) {
+    .left-logo {
+        margin-right: -3vh;
+        width: 7vh;
+    }
+
+    .center-logo {
+        width: 10vh;
+    }
+
+    .right-logo {
+        width: 7vh;
+        margin-left: -3vh;
+    }
+
+    .left-btn svg {
+        filter: drop-shadow(0.4vh 0 0 #000000);
+    }
+
+    .right-btn svg {
+        filter: drop-shadow(-0.4vh 0 0 #000000);
+    }
+
+    .themes button:active {
+        background-color: rgba(0, 0, 0, 0.4);
+        transform: scale(0.95);
+    }
+
+    .themes button {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 10%;
+        width: 7vh;
+        height: 7vh;
+        margin: 2vh;
+    }
+    
+    .main-title {
+        font-size: 7vh;
+    }
+
     .main-content {
         margin-left: 0;
-        padding: 0 60px;
+    }
+
+    .facts {
+        padding: 0 60px;        
     }
 
     .sidebar-top {
