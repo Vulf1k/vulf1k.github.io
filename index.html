@@ -117,7 +117,6 @@
                 <!--random text-->
                 
                 <div class="random-text">
-                    <hr>
                     <span>random text</span>
                     <button>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 10 10" width="30">
@@ -126,19 +125,21 @@
                         </path>
                     </svg>
                     </button>
-                    <hr>
                 </div>
                 
             </header>
             <article class="facts">
-                <h2>Interesting facts about me:</h2>
-                <ul>
-                    <li><i>Graduated from a music school with a degree in guitar</i></li>
-                    <li><b>Can swim</b></li>
-                    <li><strong>Learn programming</strong></li>
-                    <li><mark>Play Minecraft, Brawlhalla, Osu, Hollow Knight and other games</mark></li>
-                    <li><s>Have a billion dollars</s><sup>2</sup></li>
-                </ul>
+                <h2 style="text-decoration: underline;">Interesting facts about me:</h2>
+                <div class="facts-panel">
+                    <ul>
+                        <li><i>Graduated from a music school with a degree in guitar</i></li>
+                        <li><b>Can swim</b></li>
+                        <li><strong>Learn programming</strong></li>
+                        <li><mark>Play Minecraft, Brawlhalla, Osu, Hollow Knight and other games</mark></li>
+                        <li><s>Have a billion dollars</s><sup>2</sup></li>
+                    </ul>
+                    <img src="./images/vulf1k-logo.png" width="100px" alt="logo" />
+                </div>
             </article>
 
             <!-- <hr>
@@ -163,16 +164,18 @@
 
         </main>
         <footer class="main-content">
-            <div>
-                <a href="https://t.me/Vulf1k">Telegram</a>
-                <a href="https://discordapp.com/users/879050911098495017">Discord</a>
-                <a href="https://github.com/Vulf1k">Github</a>
+            <div class="footer-text">
+                <div>
+                    <a href="https://t.me/Vulf1k">Telegram</a>
+                    <a href="https://discordapp.com/users/879050911098495017">Discord</a>
+                    <a href="https://github.com/Vulf1k">Github</a>
+                </div>
+                <p>© 2026 Vulf1k. All rights reserved.</p>
             </div>
-            <p>© 2026 Vulf1k. All rights reserved.</p>
         </footer>
     </div>
 
-    <!--flux  https://github.com/Yqnn  -->
+    <!--flux  v  -->
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.querySelector('.sidebar');
@@ -196,7 +199,7 @@
 
             const size = Math.random() * 4 + 2;
             const left = Math.random() * 100;
-            const duration = Math.random() * 12 + 8;
+            const duration = Math.random() * 12 + 5;
             const delay = Math.random() * 10;
             const opacity = 0.075 * size - 0.05;
 
