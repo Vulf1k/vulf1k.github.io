@@ -155,9 +155,10 @@
                 <hr> -->
 
             <!-- <details>
+                https://www.youtube.com/watch?v=pnRCJBzN9_4
                     <summary>Try to click here</summary>
                     <p>I'm spaced</p>
-                </details>
+                </details>🧿
 
                 <audio controls src="./media/S-T-A-L-K-E-R-He-was-a-good-stalker-longer-version.mp3"></audio><br>
                 <video controls src="./media/VID20231222183154.mp4"></video><br>
@@ -237,18 +238,23 @@
         
         let rng_index = Math.round(Math.random() * 6);
         rtg.textContent = list_of_phrases[rng_index];
-        const speed_k = 1300;
-        let speed = speed_k / list_of_phrases[rng_index].length;
-        let distance = wrap.clientWidth;
-        rtg.style.animationDuration = (distance / speed) + 's';
+        const PX_PER_SEC = 140;
 
         rtg_btn.addEventListener('click', () => {
             rng_index = Math.round(Math.random() * 6);
             rtg.textContent = list_of_phrases[rng_index];
-            speed = speed_k / list_of_phrases[rng_index].length;
-            distance = wrap.clientWidth;
-            rtg.style.animationDuration = (distance / speed) + 's';
+            setDuration(); 
         });
+
+        function setDuration() {
+            const distance = rtg.scrollWidth + wrap.clientWidth;
+            const seconds = Math.max(6, distance / PX_PER_SEC); 
+            rtg.style.animationDuration = seconds + 's';
+        }
+
+        setDuration(); 
+        windows.addEventListener('resize', setDuration);
+
     </script>
 </body>
 
