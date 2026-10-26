@@ -236,7 +236,7 @@
             'Shaw!'
         ];
         
-        let rng_index = Math.round(Math.random() * 6);
+        const rng_index = Math.floor(Math.random() * list_of_phrases.length);
         rtg.textContent = list_of_phrases[rng_index];
         const PX_PER_SEC = 140;
 
@@ -253,7 +253,7 @@
         }
 
         setDuration(); 
-        windows.addEventListener('resize', setDuration);
+        window.addEventListener('resize', setDuration);
 
     </script>
 </body>
