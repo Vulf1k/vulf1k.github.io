@@ -37,35 +37,41 @@ for (let i = 0; i < particleCount; i++) {
     container.appendChild(particle);
 }
 
+
+
 const rtg = document.getElementById('rtg');
 const rtg_btn = document.querySelector('.reroll-btn');
 const wrap = document.querySelector('.text-wrap');
-
-const list_of_phrases = [
-    'Random text 0_0',
-    'That is not my address: Main street 67',
-    'More information about the stalker`s plot can be found in the book Roadside Picnic by the Strugatsky brothers.',
-    'Happiness for everybody, free, and no one will go away unsatisfied! - Arthur.',
-    'The website is being developed since 4th October 2026',
-    'print("Hello World!")',
-    '/tp @a Vulf1k',
-    'I use CatchyOS, btw',
-    'It`s a beautiful day outside',
-    'Shaw!',
-    '🧿'
-];
-
-let rng_index = Math.floor(Math.random() * list_of_phrases.length);
-rtg.textContent = list_of_phrases[rng_index];
 const PX_PER_SEC = 140;
 
-rtg_btn.addEventListener('click', () => {
-    rng_index = Math.floor(Math.random() * list_of_phrases.length);
-    rtg.textContent = list_of_phrases[rng_index];
-    setDuration();
-});
+fetch('./js/list_of_phrases.json')
+    .then((response) => {
+        return response.json();
+    })
+    .then((list_of_phrases) => {
+        let currentIndex = -1;
+
+        const showRandom = () => {
+            let i;
+            do {
+                i = Math.floor(Math.random() * list_of_phrases.length);
+            } while (list_of_phrases.length > 1 && i === currentIndex);
+            currentIndex = i;
+            rtg.textContent = list_of_phrases[i];
+
+            rtg.style.animation = 'none';
+            void rtg.offsetWidth;
+            rtg.style.animation = '';
+            setDuration();
+        };
+
+        showRandom();
+        rtg_btn.addEventListener('click', showRandom);
+    })
+    .catch((err) => console.error('Не удалось загрузить фразы:', err));
 
 function setDuration() {
+    if (!rtg || !wrap) return;
     const distance = rtg.scrollWidth + wrap.clientWidth;
     const seconds = Math.max(6, distance / PX_PER_SEC);
     rtg.style.animationDuration = seconds + 's';
