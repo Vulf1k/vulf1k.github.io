@@ -124,6 +124,10 @@ header {
     margin-bottom: 5px;
 }
 
+.logo-container img {
+    transition: all 1s;
+}
+
 .logo-container {
     display: flex;
     justify-content: center;
@@ -149,6 +153,30 @@ header {
     opacity: 0.6;
     width: 7vw;
     margin-left: -3vw;
+}
+
+#green-logo.left-logo {
+    transform: translateX(-58%);
+}
+
+#green-logo.right-logo {
+    transform: translateX(60%);
+}
+
+#blue-logo.right-logo {
+    transform: translateX(200%);
+}
+
+#blue-logo.center-logo {
+    transform: translateX(40%);
+}
+
+#red-logo.center-logo {
+    transform: translateX(-38%);
+}
+
+#red-logo.left-logo {
+    transform: translateX(-200%);
 }
 
 .left-btn svg {
@@ -198,7 +226,6 @@ header {
 .themes button {
     width: 7vw;
     height: 7vw;
-    margin: 2vw;
     background: none;
     border: none;
     transition: transform 0.7s;

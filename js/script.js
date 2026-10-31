@@ -1,3 +1,76 @@
+//theme-switcher
+const leftBtn = document.querySelector('.left-btn');
+const rightBtn = document.querySelector('.right-btn');
+
+const blueLogo = document.getElementById('blue-logo');
+const greenLogo = document.getElementById('green-logo');
+const redLogo = document.getElementById('red-logo');
+
+let currLogo = greenLogo;
+let leftLogo = blueLogo;
+let rightLogo = redLogo;
+
+function updateLogoClasses() {
+    currLogo.classList.remove(currLogo.className);
+    currLogo.classList.add('center-logo');
+    leftLogo.classList.remove(leftLogo.className);
+    leftLogo.classList.add('left-logo');
+    rightLogo.classList.remove(rightLogo.className);
+    rightLogo.classList.add('right-logo');
+}
+
+leftBtn.addEventListener('click', () => {
+    blueLogo.style.zIndex = '';
+    redLogo.style.zIndex = '';
+    switch (currLogo) {
+        case greenLogo:
+            currLogo = redLogo;
+            leftLogo = greenLogo;
+            rightLogo = blueLogo;
+            break;
+        case blueLogo:
+            blueLogo.style.zIndex = '99';
+            currLogo = greenLogo;
+            leftLogo = blueLogo;
+            rightLogo = redLogo;
+            break;
+        case redLogo:
+            redLogo.style.zIndex = '99';
+            currLogo = blueLogo;
+            leftLogo = redLogo;
+            rightLogo = greenLogo;
+            break;
+    }
+    updateLogoClasses();
+});
+
+rightBtn.addEventListener('click', () => {
+    greenLogo.style.zIndex = '';
+    blueLogo.style.zIndex = '';
+    switch (currLogo) {
+        case greenLogo:
+            greenLogo.style.zIndex = '99';
+            currLogo = blueLogo;
+            leftLogo = redLogo;
+            rightLogo = greenLogo;
+            break;
+        case blueLogo:
+            blueLogo.style.zIndex = '99';
+            currLogo = redLogo;
+            leftLogo = greenLogo;
+            rightLogo = blueLogo;
+            break;
+        case redLogo:
+            currLogo = greenLogo;
+            leftLogo = blueLogo;
+            rightLogo = redLogo;
+            break;
+    }
+    updateLogoClasses();
+});
+
+
+//sidebar functionality
 const menuToggle = document.getElementById('menuToggle');
 const sidebar = document.querySelector('.sidebar');
 const overlay = document.querySelector('.sidebar-overlay');
@@ -11,6 +84,8 @@ overlay.addEventListener('click', () => {
     sidebar.classList.remove('open');
 });
 
+
+//particles
 const container = document.querySelector('.particles-container');
 const particleCount = 30;
 
@@ -38,7 +113,7 @@ for (let i = 0; i < particleCount; i++) {
 }
 
 
-
+//random text generating
 const rtg = document.getElementById('rtg');
 const rtg_btn = document.querySelector('.reroll-btn');
 const wrap = document.querySelector('.text-wrap');
@@ -55,7 +130,7 @@ fetch('./js/list_of_phrases.json')
             let i;
             do {
                 i = Math.floor(Math.random() * list_of_phrases.length);
-            } while (list_of_phrases.length > 1 && i === currentIndex);
+            } while (i === currentIndex);
             currentIndex = i;
             rtg.textContent = list_of_phrases[i];
 
