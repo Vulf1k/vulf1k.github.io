@@ -1,3 +1,49 @@
+.green {
+    --bg-color: #243D2D;
+    --border: #456A52;
+    --second-text: #AFC8B4;
+    --contrast1: #F2685F;
+    --panel: #2F4D3B;
+    --text: #EDF5E8;
+    --contrast2: #A3E635;
+    --contrast3: #F2C94C;
+    --art-url-opacitiy: 0;
+    --note-opacity: 0;
+    --parallax-display: none;
+    --blue-opacity: 0;
+    --isolation: none;
+}
+
+.red {
+    --bg-color: url('../images/alice-persdotter-rydberg-cutscene-4.gif');
+    --border: #683A41;
+    --second-text: #CDB4B3;
+    --contrast1: #FF5C63;
+    --panel: #4A272C;
+    --text: #F4EEE6;
+    --contrast2: #DE232D;
+    --contrast3: #E8E6DC;
+    --note-opacity: 1;
+    --parallax-display: none;
+    --blue-opacity: 0;
+    --isolation: none;
+}
+
+.blue {
+    --bg-color: rgb(6, 16, 39);
+    --border: #2C587E;
+    --second-text: #9DB8CE;
+    --contrast1: #B38CF0;
+    --panel: #1B4061;
+    --text: #E8F1F8;
+    --contrast2: #3DD9F0;
+    --contrast3: #D6DEE6;
+    --note-opacity: 1;
+    --parallax-display: block;
+    --blue-opacity: 1;
+    --isolation: isolate;
+}
+
 *,
 *::before,
 *::after {
@@ -5,7 +51,48 @@
     margin: 0;
     padding: 0;
 }
-/*https://www.artstation.com/artwork/684W5w*/
+
+article {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.parallax {
+    display: var(--parallax-display);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+}
+
+.layer:nth-child(1) {
+    transform: translate(0, calc(var(--scrollTop) / 1.6));
+}
+
+.layer:nth-child(2) {
+    transform: translate(0, calc(var(--scrollTop) / 3));
+}
+
+.layer:nth-child(3) {
+    transform: translate(0, calc(var(--scrollTop) / 4));
+}
+
+.layer:nth-child(4) {
+    transform: translate(0, calc(var(--scrollTop) / 5.7));
+}
+
 .main-title {
     text-align: center;
     font-size: 7vw;
@@ -104,16 +191,27 @@
 }
 
 header {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
+    overflow: hidden;
 }
 
-.skin {
-    opacity: var('--skin-opacity');
+.separator {
+    opacity: var(--blue-opacity);
+    border: none;
+    height: 1px;
+    background-color: var(--contrast3);
+}
+
+.note {
+    height: 40px;
+    opacity: var(--note-opacity);
+    transition: opacity 1s ease;
 }
 
 .themes {
@@ -246,7 +344,7 @@ header {
 .particle {
   position: absolute;
   bottom: -20px;
-  background-color: #A3E635;
+  background-color: var(--contrast2);
   opacity: 0.3;
   animation: floatUp linear infinite;
   will-change: transform, opacity;
@@ -285,15 +383,25 @@ header {
     letter-spacing: 1px;
     font-size: 20px;
     line-height: 1.6;
-    color: #EDF5E8;
-    background-color: #243D2D;
-    
-    /*background-image: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 0, 0, 0.1) 1px, rgba(0, 0, 0, 0.1) 2px);*/
+    color: var(--text);
+    background: var(--bg-color);
+    background-size: 100% 100%;
     background-attachment: fixed;
     background-size: cover;
     min-height: 100vh;
-    /*padding: 30px 30px;*/
     position: relative;
+    isolation: var(--isolation);
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: 100vh 0 0;
+    z-index: -1;
+    background-image: url('../images/cave.png');
+    background-size: cover;
+    background-position: center;
+    opacity: var(--blue-opacity);
 }
 
 img {
@@ -306,8 +414,8 @@ img {
     top: 0;
     left: 0;
     height: 100vh;
-    background-color: #2F4D3B;
-    border-right: 1px solid #456A52;
+    background-color: var(--panel);
+    border-right: 1px solid var(--border);
     width: 60px;
     transition: width 0.3s ease;
     display: flex;
@@ -325,7 +433,7 @@ img {
     gap: 15px;
     margin-bottom: 25px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #456A52;
+    border-bottom: 1px solid var(--border);
 }
 
 .menu-btn {
@@ -348,7 +456,7 @@ img {
 .brand-link {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #EDF5E8;
+    color: var(--text);
     text-decoration: none;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -365,7 +473,7 @@ img {
     align-items: center;
     gap: 13px;
     padding: 10px 5px;
-    color: #A6B2A8;
+    color: var(--second-text);
     text-decoration: none;
     border-radius: 6px;
 }
@@ -386,8 +494,7 @@ img {
 
 .nav-item a:hover {
     background-color: rgba(163, 230, 53, 0.1);
-    color: #F2685F;
-    /* #A3E635 , #F2C94C */
+    color: var(--contrast1);
 }
 
 .sidebar.open .nav-item a:hover {
@@ -416,8 +523,8 @@ img {
 .facts-panel {
     margin-top: 10px;
     padding: 10px 40px;
-    background-color: #2F4D3B;
-    border: 3px solid #F2C94C;
+    background-color: var(--panel);
+    border: 3px solid var(--contrast3);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -466,7 +573,7 @@ img {
     height: 40px;
     background-color: rgba(0, 0, 0, 0.3);
     border: none;
-    fill: #EDF5E8;
+    fill: var(--text);
     border-radius: 0 7px 7px 0;
     transition: fill 0.15s ease;
 }
@@ -481,7 +588,7 @@ footer {
     text-align: center;
 }
 footer a {
-    color: #A3E635;
+    color: var(--contrast2);
 }
 
 .details {
@@ -516,7 +623,7 @@ details[open] > summary::before {
 
 @media (min-width: 769px) {
     .reroll-btn:hover {
-        fill: #F2C94C;
+        fill: var(--contrast3);
     }
 
     .facts-panel:hover {
@@ -547,8 +654,16 @@ details[open] > summary::before {
 }
 
 @media (max-width: 768px) {
+    .art-url {
+        left: 0;
+    }
+
+    .container {
+        background-position: 70% 50%;
+    }
+
     .reroll-btn:active {
-        fill: #F2C94C;
+        fill: var(--contrast3);
     }
 
     .sidebar-overlay {
@@ -647,8 +762,8 @@ details[open] > summary::before {
         margin: 0;
         padding: 10px;
         height: 100vh;
-        background-color: #2F4D3B;
-        border-right: 1px solid #456A52;
+        background-color: var(--panel);
+        border-right: 1px solid var(--border);
         border-radius: 0;
         width: 260px;
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);

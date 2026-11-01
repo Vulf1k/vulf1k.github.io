@@ -1,73 +1,4 @@
-//theme-switcher
-const leftBtn = document.querySelector('.left-btn');
-const rightBtn = document.querySelector('.right-btn');
 
-const blueLogo = document.getElementById('blue-logo');
-const greenLogo = document.getElementById('green-logo');
-const redLogo = document.getElementById('red-logo');
-
-let currLogo = greenLogo;
-let leftLogo = blueLogo;
-let rightLogo = redLogo;
-
-function updateLogoClasses() {
-    currLogo.classList.remove(currLogo.className);
-    currLogo.classList.add('center-logo');
-    leftLogo.classList.remove(leftLogo.className);
-    leftLogo.classList.add('left-logo');
-    rightLogo.classList.remove(rightLogo.className);
-    rightLogo.classList.add('right-logo');
-}
-
-leftBtn.addEventListener('click', () => {
-    blueLogo.style.zIndex = '';
-    redLogo.style.zIndex = '';
-    switch (currLogo) {
-        case greenLogo:
-            currLogo = redLogo;
-            leftLogo = greenLogo;
-            rightLogo = blueLogo;
-            break;
-        case blueLogo:
-            blueLogo.style.zIndex = '99';
-            currLogo = greenLogo;
-            leftLogo = blueLogo;
-            rightLogo = redLogo;
-            break;
-        case redLogo:
-            redLogo.style.zIndex = '99';
-            currLogo = blueLogo;
-            leftLogo = redLogo;
-            rightLogo = greenLogo;
-            break;
-    }
-    updateLogoClasses();
-});
-
-rightBtn.addEventListener('click', () => {
-    greenLogo.style.zIndex = '';
-    blueLogo.style.zIndex = '';
-    switch (currLogo) {
-        case greenLogo:
-            greenLogo.style.zIndex = '99';
-            currLogo = blueLogo;
-            leftLogo = redLogo;
-            rightLogo = greenLogo;
-            break;
-        case blueLogo:
-            blueLogo.style.zIndex = '99';
-            currLogo = redLogo;
-            leftLogo = greenLogo;
-            rightLogo = blueLogo;
-            break;
-        case redLogo:
-            currLogo = greenLogo;
-            leftLogo = blueLogo;
-            rightLogo = redLogo;
-            break;
-    }
-    updateLogoClasses();
-});
 
 
 //sidebar functionality
@@ -154,3 +85,112 @@ function setDuration() {
 
 setDuration();
 window.addEventListener('resize', setDuration);
+
+
+//theme-switcher
+const leftBtn = document.querySelector('.left-btn');
+const rightBtn = document.querySelector('.right-btn');
+
+const blueLogo = document.getElementById('blue-logo');
+const greenLogo = document.getElementById('green-logo');
+const redLogo = document.getElementById('red-logo');
+
+const note = document.querySelector('.note');
+
+let currLogo = greenLogo;
+let leftLogo = blueLogo;
+let rightLogo = redLogo;
+
+function updateLogoClasses() {
+    currLogo.classList.remove(currLogo.className);
+    currLogo.classList.add('center-logo');
+    leftLogo.classList.remove(leftLogo.className);
+    leftLogo.classList.add('left-logo');
+    rightLogo.classList.remove(rightLogo.className);
+    rightLogo.classList.add('right-logo');
+}
+
+function setGreenTheme() {
+    container.style.display = '';
+    document.body.classList.remove(document.body.className);
+    document.body.classList.add('green');
+}
+
+function setRedTheme() {
+    container.style.display = 'none';
+    document.body.classList.remove(document.body.className);
+    document.body.classList.add('red');
+    note.innerHTML = '';
+    note.insertAdjacentHTML('afterbegin', '<a style="color: #DE232D; font-size: 0.9rem;" href="https://www.artstation.com/artwork/684W5w">Author of the background art</a>');
+}
+
+function setBlueTheme() {
+    container.style.display = 'none';
+    document.body.classList.remove(document.body.className);
+    document.body.classList.add('blue');
+    note.innerHTML = '';
+    note.insertAdjacentHTML('afterbegin', 'My skin <sub>in Minecraft</sub>');
+}
+
+rightBtn.addEventListener('click', () => {
+    blueLogo.style.zIndex = '';
+    redLogo.style.zIndex = '';
+    switch (currLogo) {
+        case greenLogo:
+            currLogo = redLogo;
+            leftLogo = greenLogo;
+            rightLogo = blueLogo;
+            setRedTheme();
+            break;
+        case blueLogo:
+            blueLogo.style.zIndex = '99';
+            currLogo = greenLogo;
+            leftLogo = blueLogo;
+            rightLogo = redLogo;
+            setGreenTheme();
+            break;
+        case redLogo:
+            redLogo.style.zIndex = '99';
+            currLogo = blueLogo;
+            leftLogo = redLogo;
+            rightLogo = greenLogo;
+            setBlueTheme();
+            break;
+    }
+    updateLogoClasses();
+});
+
+leftBtn.addEventListener('click', () => {
+    greenLogo.style.zIndex = '';
+    blueLogo.style.zIndex = '';
+    switch (currLogo) {
+        case greenLogo:
+            greenLogo.style.zIndex = '99';
+            currLogo = blueLogo;
+            leftLogo = redLogo;
+            rightLogo = greenLogo;
+            setBlueTheme();
+            break;
+        case blueLogo:
+            blueLogo.style.zIndex = '99';
+            currLogo = redLogo;
+            leftLogo = greenLogo;
+            rightLogo = blueLogo;
+            setRedTheme();
+            break;
+        case redLogo:
+            currLogo = greenLogo;
+            leftLogo = blueLogo;
+            rightLogo = redLogo;
+            setGreenTheme();
+            break;
+    }
+    updateLogoClasses();
+});
+
+
+//parallax
+window.addEventListener('scroll', () => {
+	document.documentElement.style.setProperty('--scrollTop', `${this.scrollY}px`) // Update method
+    console.log('Scroll position:', this.scrollY); // Log the scroll position
+})
